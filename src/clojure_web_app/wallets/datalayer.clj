@@ -6,26 +6,27 @@
     (:import java.util.UUID)
     (:gen-class))
   
-  ;; * DATA ACCESS LAYER - CREATE
-  (defn post-wallet
-    "Create a wallet"
-    [wallet]
-    (let [is-valid (v/validate-wallet wallet)]
-      (when is-valid
-        (sql-insert-wallet db {:name (:name wallet)}))))
+
   
   ;; * DATA ACCESS LAYER - GET ALL
-  (defn fetch-wallets
-    "returns all wallets"
-    []
-    (let [result (sql-select-wallets db)] result))
+  ;; (defn fetch-wallets
+  ;;   "returns all wallets"
+  ;;   [idUser]
+  ;;   (let [result (sql-select-wallets db {:idUser (num (read-string idUser))})] result))
   
   
-  ;; * DATA ACCESS LAYER - GET BY ID
-  
-  
-  (defn fetch-wallet-by-id
+  ;; * DATA ACCESS LAYER - GET BY USER ID
+   
+  (defn fetch-wallet-by-user-id
     "returns one wallet"
     [id]
     (let [result
-          (sql-select-wallet-by-id db {:id (num (read-string id))})] result))
+          (sql-select-wallet-by-user-id db {:id (num (read-string id))})] (group-by :user result)))
+
+;; * DATA ACCESS LAYER - CREATE
+(defn post-wallet
+  "Create a wallet"
+  [wallet]
+  (let [is-valid (v/validate-wallet wallet)]
+    (when is-valid
+      (sql-insert-wallet db (assoc wallet :id (java.util.UUID/randomUUID))))))

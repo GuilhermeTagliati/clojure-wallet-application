@@ -1,14 +1,17 @@
+# CREATE USER
 POST http://localhost:3000/user HTTP/2.0
 Content-Type: application/json
 
 {
-  "name": "Oh MY GOD"
+  "name": "New User Name"
 }
 
 ###
 
+# RETURN ALL USERS
 GET http://localhost:3000/user HTTP/2.0
 
 ###
 
+# RETURN USER BY ID
 GET http://localhost:3000/user/2 HTTP/2.0

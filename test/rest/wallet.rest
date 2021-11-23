@@ -1,0 +1,18 @@
+# CREATE WALLET
+POST http://localhost:3000/wallet HTTP/2.0
+Content-Type: application/json
+
+{
+  "idUser": 1,
+  "name": "My New Wallet"
+}
+
+###
+
+# RETURN ALL WALLETS FROM USER
+GET http://localhost:3000/wallet/GetByUserId/1 HTTP/2.0
+
+###
+
+# RETURN WALLET BY ID
+GET http://localhost:3000/wallet/2 HTTP/2.0
