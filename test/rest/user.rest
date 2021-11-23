@@ -1,0 +1,14 @@
+POST http://localhost:3000/user HTTP/2.0
+Content-Type: application/json
+
+{
+  "name": "Oh MY GOD"
+}
+
+###
+
+GET http://localhost:3000/user HTTP/2.0
+
+###
+
+GET http://localhost:3000/user/2 HTTP/2.0
