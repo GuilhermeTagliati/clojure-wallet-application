@@ -1,44 +1,53 @@
-# clojure-web-app
+# API Clojure - Carteira de Investimentos
 
-FIXME: description
+## Deselvolvedores
+Nome: Guilherme Tagliati da Silva RA: 17.00375-0
+Nome: Breno Thomaz Savanini RA17.00815-8
 
-## Installation
+## Resumo
+O projeto consiste em criar uma API para inserir, selecionar, atualizar e deletar informações de uma determinada carteira de investimentos. As carteiras de investimentos serão criadas com base no sistema de ARCA (Ativos Nacionais, *Real State*,  Caixa e Ativos Internacionais)
 
-Download from http://example.com/FIXME.
 
-## Usage
+## Desenvolvimento
+### Tecnologias
 
-FIXME: explanation
+- Será utilizado o docker para provisão de recursos. 
+- Postgres DB para armazenamento das informações
+- Clojure como linguagem principal
 
-    $ java -jar clojure-web-app-0.1.0-standalone.jar [args]
+### Informações lógicas do projeto
+Serão consideradas essas as entidades principais.
 
-## Options
+**CARTEIRA:**
+- name: string
+- realstate: double
+- international: double
+- cash: double
+- national: double
+- operations: ListOperations
 
-FIXME: listing of options this app accepts.
+**USUARIO:**
+- name: string
+- wallet: Carteira
 
-## Examples
+**OPERATION**
+- stockOperation: 'string'
+- value: double
 
-...
+**Diagrama Entidade Relacionamento**
 
-### Bugs
 
-...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+## Rodando o Projeto
 
-## License
+O projeto está utilizando docker-compose para sua inicialização. Então assim que clonar o projeto, não esqueça de ter docker instalado na maquina e então rode o comando abaixo:
 
-Copyright © 2021 FIXME
+```bash
+docker-compose up
+```
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+Com isso, todo o ambiente (banco de dados e api) serão criados e estarão disponíveis para teste em `localhost:3000` no caso da API e em `localhost:5432` no caso do banco de dados.
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+## Testes com o projeto
+
+Dentro do projeto, no caminho `./test/rest/` existem diversos arquivos .rest que foram criados com o intuito de testar as chamadas HTTP. 
