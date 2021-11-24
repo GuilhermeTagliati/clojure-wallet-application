@@ -22,7 +22,7 @@ values (:name)
 -- A :result value of :n below will return affected rows:
 -- :name sql-select-wallet-by-user-id :? :*
 -- :doc Get all the wallets of one user
-SELECT u.name AS user, w.name AS wallet  FROM "public"."wallet" w INNER JOIN "public"."user" u ON u.id = w.id_user WHERE u.id = :id;
+SELECT u.name AS user,  w.name AS wallet, w.id::TEXT FROM "public"."wallet" w INNER JOIN "public"."user" u ON u.id = w.id_user WHERE u.id = :id;
 
 -- A :result value of :n below will return affected rows:
 -- :name sql-insert-wallet :! :n
