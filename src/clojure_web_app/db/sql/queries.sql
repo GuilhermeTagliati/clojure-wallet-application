@@ -29,3 +29,11 @@ SELECT u.name AS user,  w.name AS wallet, w.id::TEXT FROM "public"."wallet" w IN
 -- :doc Save Wallet on db
 insert into "public"."wallet" (id, id_user, name)
 values (:id, :idUser, :name)
+
+-- OPERATIONS
+
+-- A :result value of :n below will return affected rows:
+-- :name sql-insert-operation :! :n
+-- :doc Save Operation on db
+insert into "public"."operation" (id_wallet, quantity, type, timestamp) 
+values (:idWallet, :quantity, :type, now());

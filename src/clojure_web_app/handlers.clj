@@ -7,16 +7,17 @@
             [clojure.string :as str]
             [clojure.data.json :as json]
             [clojure.tools.logging :as log]
-            [clojure-web-app.users.datalayer :as duser]
-            [clojure-web-app.wallets.datalayer :as dwallet])
+            [clojure-web-app.users.datalayer :as user_dal]
+            [clojure-web-app.wallets.datalayer :as wallet_dal]
+            [clojure-web-app.operations.datalayer :as operation_dal])
   (:gen-class))
 
-;; * USER HANDLER CREATE USER
+;; * USER HANDLER CREATE
 (defn post-user-handler
   [req]
   (let [user-json (:body req)
         saved (try
-                (duser/post-user user-json)
+                (user_dal/post-user user-json)
                 (catch Exception e
                   (do
                     (log/error e)
@@ -32,7 +33,7 @@
   [req]
   (log/info req)
   (let
-   [userlist (duser/fetch-users)]
+   [userlist (user_dal/fetch-users)]
 
     {:status 200
      :headers {"Content-type" "application/json"}
@@ -42,8 +43,8 @@
 (defn get-user-byid-handler
   [req]
   (log/info req)
-  (let [num ( -> req :params :id)
-        userObj (duser/fetch-user-by-id num)]
+  (let [num (-> req :params :id)
+        userObj (user_dal/fetch-user-by-id num)]
     {:status 200
      :headers {"Content-type" "application/json"}
      :body (json/write-str userObj)}))
@@ -51,23 +52,27 @@
 
 
 ;; * WALLET HANDLER GET BY ID
+
+
 (defn get-wallets-by-user-handler
   [req]
   (log/info req)
-  (let [num ( -> req :params :id)
-    wallet (dwallet/fetch-wallet-by-user-id num)]
+  (let [num (-> req :params :id)
+        wallet (wallet_dal/fetch-wallet-by-user-id num)]
     (println num)
     {:status 200
      :headers {"Content-type" "application/json"}
-     :body (json/write-str wallet)}))    
+     :body (json/write-str wallet)}))
 
 
-;; * WALLET HANDLER CREATE USER
+;; * WALLET HANDLER CREATE
+
+
 (defn post-wallet-handler
   [req]
   (let [wallet-json (:body req)
         saved (try
-                (dwallet/post-wallet wallet-json)
+                (wallet_dal/post-wallet wallet-json)
                 (catch Exception e
                   (do
                     (log/error e)
@@ -77,3 +82,20 @@
      :headers {"Content-Type" "text/html"}
      :body    (when (not saved)
                 "error on creating wallet")}))
+
+;; * OPERATION HANDLER CREATE
+(defn post-operation-handler
+  [req]
+  (let [operation-json (:body req)
+        saved (try
+                (operation_dal/post-operation operation-json)
+                (catch Exception e
+                  (do
+                    (log/error e)
+                    (println e)
+                    false)))]
+    (log/info operation-json)
+    {:status  (if saved 201 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not saved)
+                "error on creating operation")}))

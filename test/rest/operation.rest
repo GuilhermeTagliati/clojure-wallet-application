@@ -1,0 +1,9 @@
+# CREATE OPERATION
+POST http://localhost:3000/operation HTTP/2.0
+Content-Type: application/json
+
+{
+  "idWallet": "80065f7e-4b2b-11ec-81d3-0242ac130003",
+  "quantity": 10.2,
+  "type": "cash"
+}
