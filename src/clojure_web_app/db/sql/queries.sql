@@ -25,6 +25,12 @@ values (:name)
 SELECT u.name AS user,  w.name AS wallet, w.id::TEXT FROM "public"."wallet" w INNER JOIN "public"."user" u ON u.id = w.id_user WHERE u.id = :id;
 
 -- A :result value of :n below will return affected rows:
+-- :name sql-select-wallet-by-id :? :*
+-- :doc Get wallet by id
+SELECT w.name, o.quantity, o.type, o.timestamp::TEXT FROM "public"."wallet" w INNER JOIN "public"."operation" o ON w.id = o.id_wallet WHERE w.id = :id;
+
+
+-- A :result value of :n below will return affected rows:
 -- :name sql-insert-wallet :! :n
 -- :doc Save Wallet on db
 insert into "public"."wallet" (id, id_user, name)

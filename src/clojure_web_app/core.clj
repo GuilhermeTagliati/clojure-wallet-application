@@ -13,10 +13,13 @@
   (:gen-class))
 
 (defroutes app-routes
+  ;; * CREATE OPERATION
   (POST "/operation" [] (mj/wrap-json-body post-operation-handler {:keywords? true}))
 
+  ;; ** WALLET METHODS   
   (GET ["/wallet/GetByUserId/:id", :id #"[0-9]+"] [id] get-wallets-by-user-handler)
-  (POST "/wallet" [] (mj/wrap-json-body post-wallet-handler {:keywords? true}))  
+  (GET "/wallet" [] get-wallet-by-id-handler)
+  (POST "/wallet" [] (mj/wrap-json-body post-wallet-handler {:keywords? true}))
 
   (GET "/user" [] get-user-handler)
   (GET ["/user/:id", :id #"[0-9]+"] [id] get-user-byid-handler)

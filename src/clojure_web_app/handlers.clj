@@ -51,7 +51,7 @@
 
 
 
-;; * WALLET HANDLER GET BY ID
+;; * WALLET HANDLER GET BY USER ID
 
 
 (defn get-wallets-by-user-handler
@@ -60,6 +60,14 @@
   (let [num (-> req :params :id)
         wallet (wallet_dal/fetch-wallet-by-user-id num)]
     (println num)
+    {:status 200
+     :headers {"Content-type" "application/json"}
+     :body (json/write-str wallet)}))
+
+(defn get-wallet-by-id-handler
+  [req]
+  (let [num (-> req :params :id)
+    wallet (wallet_dal/fetch-wallet-by-id num)]
     {:status 200
      :headers {"Content-type" "application/json"}
      :body (json/write-str wallet)}))
@@ -82,6 +90,8 @@
      :headers {"Content-Type" "text/html"}
      :body    (when (not saved)
                 "error on creating wallet")}))
+
+
 
 ;; * OPERATION HANDLER CREATE
 (defn post-operation-handler
