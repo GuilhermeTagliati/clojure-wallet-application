@@ -10,12 +10,12 @@ Content-Type: application/json
 ###
 
 # RETURN ALL WALLETS FROM USER
-GET http://localhost:3000/wallet/GetByUserId/1 HTTP/2.0
+GET http://localhost:3000/wallet/GetByUserId/5 HTTP/2.0
 
 ###
 
 # RETURN WALLET BY ID
-GET http://localhost:3000/wallet?id=80065f7e-4b2b-11ec-81d3-0242ac130003 HTTP/2.0
+GET http://localhost:3000/wallet?id=9509f40e-a3e4-4613-be2a-e06b4cfed97d HTTP/2.0
 
 
 ###
