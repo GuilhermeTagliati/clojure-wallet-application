@@ -3,8 +3,8 @@ POST http://localhost:3000/wallet HTTP/2.0
 Content-Type: application/json
 
 {
-  "idUser": 1,
-  "name": "My New Wallet 2"
+  "idUser": 5,
+  "name": "Carteira a ser destruida"
 }
 
 ###
@@ -17,6 +17,17 @@ GET http://localhost:3000/wallet/GetByUserId/1 HTTP/2.0
 # RETURN WALLET BY ID
 GET http://localhost:3000/wallet?id=80065f7e-4b2b-11ec-81d3-0242ac130003 HTTP/2.0
 
-# DELETE WALLET
 
+###
 # UPDATE WALLET
+PUT http://localhost:3000/wallet HTTP/2.0
+Content-Type: application/json
+
+{
+  "id": "80065f7e-4b2b-11ec-81d3-0242ac130003",
+  "name": "Minha Carteira Renomeada"
+}
+
+###
+# DELETE WALLET
+DELETE http://localhost:3000/wallet?id=10bbc2a6-0296-4900-894a-74b26acec279 HTTP/2.0

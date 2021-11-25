@@ -20,6 +20,8 @@
   (GET ["/wallet/GetByUserId/:id", :id #"[0-9]+"] [id] get-wallets-by-user-handler)
   (GET "/wallet" [] get-wallet-by-id-handler)
   (POST "/wallet" [] (mj/wrap-json-body post-wallet-handler {:keywords? true}))
+  (PUT "/wallet" [] (mj/wrap-json-body update-wallet-handler {:keywords? true}))
+  (DELETE "/wallet" [] delete-wallet-handler)
 
   ;; * USER METHODS
   (GET "/user" [] get-user-handler)

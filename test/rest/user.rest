@@ -24,6 +24,10 @@ Content-Type: application/json
   "name": "Aparecido Freitas"
 }
 
+###
+# RETURN ALL USERS
+GET http://localhost:3000/user HTTP/2.0
+
 
 ###
 # DELETE USER

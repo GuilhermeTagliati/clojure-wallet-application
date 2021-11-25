@@ -53,11 +53,11 @@
   [req]
   (let [num (-> req :params :id)
         deleted (try
-                (user_dal/delete-user num)
-                (catch Exception e
-                  (do
-                    (log/error e)
-                    false)))]
+                  (user_dal/delete-user num)
+                  (catch Exception e
+                    (do
+                      (log/error e)
+                      false)))]
     {:status  (if deleted 204 400)
      :headers {"Content-Type" "text/html"}
      :body    (when (not deleted)
@@ -68,11 +68,11 @@
   [req]
   (let [user-json (:body req)
         updated (try
-                (user_dal/update-user user-json)
-                (catch Exception e
-                  (do
-                    (log/error e)
-                    false)))]
+                  (user_dal/update-user user-json)
+                  (catch Exception e
+                    (do
+                      (log/error e)
+                      false)))]
     {:status  (if updated 204 400)
      :headers {"Content-Type" "text/html"}
      :body    (when (not updated)
@@ -100,7 +100,6 @@
      :headers {"Content-type" "application/json"}
      :body (json/write-str wallet)}))
 
-
 ;; * WALLET HANDLER CREATE
 (defn post-wallet-handler
   [req]
@@ -116,6 +115,35 @@
      :headers {"Content-Type" "text/html"}
      :body    (when (not saved)
                 "error on creating wallet")}))
+;; * WALLET HANDLER UPDATE
+(defn update-wallet-handler
+  [req]
+  (let [wallet-json (:body req)
+        updated (try
+                  (wallet_dal/update-wallet wallet-json)
+                  (catch Exception e
+                    (do
+                      (log/error e)
+                      false)))]
+    (log/info wallet-json)
+    {:status  (if updated 204 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not updated)
+                "error on updating wallet")}))
+;; * WALLET HANDLER DELETE
+(defn delete-wallet-handler
+  [req]
+  (let [identifier (-> req :params :id)
+        deleted (try
+                  (wallet_dal/delete-wallet identifier)
+                  (catch Exception e
+                    (do
+                      (log/error e)
+                      false)))]
+    {:status  (if deleted 204 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not deleted)
+                "error on deleting user")}))
 
 
 

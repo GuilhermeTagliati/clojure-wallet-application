@@ -47,6 +47,17 @@ SELECT w.name, o.quantity, o.type, o.timestamp::TEXT FROM "public"."wallet" w IN
 insert into "public"."wallet" (id, id_user, name)
 values (:id, :idUser, :name)
 
+-- :name sql-update-wallet :! :n
+-- :doc updates a wallet
+update "public"."wallet"
+set name = :name
+where id = :id
+
+-- :name sql-delete-wallet-by-id :! :n
+-- :doc deletes wallet
+delete from "public"."wallet" where id = :id
+
+
 -- OPERATIONS
 
 -- A :result value of :n below will return affected rows:
