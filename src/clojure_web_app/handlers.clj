@@ -34,7 +34,6 @@
   (log/info req)
   (let
    [userlist (user_dal/fetch-users)]
-
     {:status 200
      :headers {"Content-type" "application/json"}
      :body (json/write-str userlist)}))
@@ -49,6 +48,35 @@
      :headers {"Content-type" "application/json"}
      :body (json/write-str userObj)}))
 
+;; * USER HANDLER DELETE
+(defn delete-user-handler
+  [req]
+  (let [num (-> req :params :id)
+        deleted (try
+                (user_dal/delete-user num)
+                (catch Exception e
+                  (do
+                    (log/error e)
+                    false)))]
+    {:status  (if deleted 204 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not deleted)
+                "error on deleting user")}))
+
+;; * USER HANDLER UPDATE
+(defn update-user-handler
+  [req]
+  (let [user-json (:body req)
+        updated (try
+                (user_dal/update-user user-json)
+                (catch Exception e
+                  (do
+                    (log/error e)
+                    false)))]
+    {:status  (if updated 204 400)
+     :headers {"Content-Type" "text/html"}
+     :body    (when (not updated)
+                "error on updating user")}))
 
 
 ;; * WALLET HANDLER GET BY USER ID
@@ -67,15 +95,13 @@
 (defn get-wallet-by-id-handler
   [req]
   (let [num (-> req :params :id)
-    wallet (wallet_dal/fetch-wallet-by-id num)]
+        wallet (wallet_dal/fetch-wallet-by-id num)]
     {:status 200
      :headers {"Content-type" "application/json"}
      :body (json/write-str wallet)}))
 
 
 ;; * WALLET HANDLER CREATE
-
-
 (defn post-wallet-handler
   [req]
   (let [wallet-json (:body req)
@@ -94,6 +120,8 @@
 
 
 ;; * OPERATION HANDLER CREATE
+
+
 (defn post-operation-handler
   [req]
   (let [operation-json (:body req)

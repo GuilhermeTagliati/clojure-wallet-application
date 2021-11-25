@@ -7,11 +7,25 @@ Content-Type: application/json
 }
 
 ###
-
 # RETURN ALL USERS
 GET http://localhost:3000/user HTTP/2.0
 
 ###
-
 # RETURN USER BY ID
 GET http://localhost:3000/user/2 HTTP/2.0
+
+###
+# UPDATE USER
+PUT http://localhost:3000/user HTTP/2.0
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Aparecido Freitas"
+}
+
+
+###
+# DELETE USER
+
+DELETE http://localhost:3000/user?id=3 HTTP/2.0

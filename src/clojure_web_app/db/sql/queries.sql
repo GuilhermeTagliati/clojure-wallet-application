@@ -17,6 +17,17 @@ select * from "public"."user" where id = :id;
 insert into "public"."user" (name)
 values (:name)
 
+-- :name sql-delete-user-by-id :! :n
+-- :doc deletes user
+delete from "public"."user" where id = :id
+
+-- :name sql-update-user :! :n
+-- :doc updates a user
+update "public"."user"
+set name = :name
+where id = :id
+
+
 -- WALLETS
 
 -- A :result value of :n below will return affected rows:

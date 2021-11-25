@@ -14,7 +14,24 @@
     (when is-valid
       (sql-insert-user db {:name (:name user)}))))
 
+;; * DATA ACCESS LAYER - DELETE
+(defn delete-user
+  "deletes one user"
+  [id]
+  (sql-delete-user-by-id db
+                         {:id (num (read-string id))}))
+
+;; * DATA ACCESS LAYER - UPDATE
+(defn update-user
+  "updates a user a user"
+  [user]
+  (let [is-valid (v/validate-user user)]
+    (when is-valid
+      (sql-update-user db {:name (:name user) :id (:id user)}))))
+
 ;; * DATA ACCESS LAYER - GET ALL
+
+
 (defn fetch-users
   "returns all users"
   []
