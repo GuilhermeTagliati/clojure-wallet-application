@@ -39,13 +39,7 @@ Serão consideradas essas as entidades principais.
 
 **Diagrama Entidade Relacionamento**
 
-```mermaid
-erDiagram
-
-	USER 	||--o{ WALLET : has
-	WALLET 	||--o{ OPERATION : contains
-
-```
+![DER](https://raw.githubusercontent.com/GuilhermeTagliati/clojure-wallet-application/main/resources/images/clojure.png)
 
 ## Rodando o Projeto
 
