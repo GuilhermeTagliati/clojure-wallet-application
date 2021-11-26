@@ -3,7 +3,7 @@ POST http://localhost:3000/user HTTP/2.0
 Content-Type: application/json
 
 {
-  "name": "Desistente"
+  "name": "Novo Usuario"
 }
 
 ###
@@ -20,7 +20,7 @@ PUT http://localhost:3000/user HTTP/2.0
 Content-Type: application/json
 
 {
-  "id": 4,
+  "id": 2,
   "name": "Aparecido Freitas"
 }
 
@@ -32,4 +32,9 @@ GET http://localhost:3000/user HTTP/2.0
 ###
 # DELETE USER
 
-DELETE http://localhost:3000/user?id=3 HTTP/2.0
+DELETE http://localhost:3000/user?id=2 HTTP/2.0
+
+###
+# RETURN ALL USERS
+GET http://localhost:3000/user HTTP/2.0
+

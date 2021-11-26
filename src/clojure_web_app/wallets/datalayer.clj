@@ -11,11 +11,15 @@
   [id]
   (let [result
         (sql-select-wallet-by-id db {:id (java.util.UUID/fromString id)})]
-    (assoc {}
-           :wallet (name (first (keys (group-by :name result))))
-           :operations (map #(dissoc % :name) result))))
+    (if (empty? result)
+      (empty  [1 2])
+      (assoc {}
+             :wallet (name (first (keys (group-by :name result))))
+             :operations (map #(dissoc % :name) result)))))
 
 ;; * DATA ACCESS LAYER - GET BY USER ID
+
+
 (defn fetch-wallet-by-user-id
   "returns one wallet"
   [id]
@@ -33,7 +37,7 @@
     (when is-valid
       (sql-insert-wallet db (assoc wallet :id (java.util.UUID/randomUUID))))))
 
-;; * DATA ACCESS LAYER - CREATE
+;; * DATA ACCESS LAYER - UPDATE
 (defn update-wallet
   "updates a wallet"
   [wallet]
@@ -47,4 +51,4 @@
   "deletes one user"
   [id]
   (sql-delete-wallet-by-id db
-                         {:id (java.util.UUID/fromString id)}))
+                           {:id (java.util.UUID/fromString id)}))

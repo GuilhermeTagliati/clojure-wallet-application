@@ -3,7 +3,7 @@ POST http://localhost:3000/operation HTTP/2.0
 Content-Type: application/json
 
 {
-  "idWallet": "9509f40e-a3e4-4613-be2a-e06b4cfed97d",
+  "idWallet": "e302c24d-f5b1-4d62-b59b-e761b28023f3",
   "quantity": 1000.20,
   "type": "cash"
 }

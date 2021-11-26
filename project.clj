@@ -16,4 +16,6 @@
   :main clojure-web-app.core
   :aot [clojure-web-app.core]
   :uberjar-name "clojure-web-app"
-  :target-path "target/%s")
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all
+                       :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
