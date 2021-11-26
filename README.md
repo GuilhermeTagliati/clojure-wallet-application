@@ -1,9 +1,11 @@
 # API Clojure - Carteira de Investimentos
 
 ## Deselvolvedores
-Nome: Guilherme Tagliati da Silva RA: 17.00375-0
-Nome: Breno Thomaz Savanini RA17.00815-8
-
+Nome: Guilherme Tagliati da Silva       RA: 17.00375-0
+Nome: Breno Thomaz Savanini             RA: 17.00815-8
+Nome: Lucas Martins Coelho 	            RA: 15.03863-7
+Nome: Enricco Diniz 		            RA: 17.00165-0
+Nome: Lucas Menezes                     RA: 16.00683-6
 ## Resumo
 O projeto consiste em criar uma API para inserir, selecionar, atualizar e deletar informações de uma determinada carteira de investimentos. As carteiras de investimentos serão criadas com base no sistema de ARCA (Ativos Nacionais, *Real State*,  Caixa e Ativos Internacionais)
 
