@@ -46,12 +46,14 @@ Serão consideradas essas as entidades principais.
 O projeto está utilizando docker-compose para sua inicialização. Então assim que clonar o projeto, não esqueça de ter docker instalado na maquina e então rode os comandos abaixo:
 
 Para construir e criar o uberjar do projeto em clojure:
-```bash
+
+```shell
 docker-compose build
 ```
 
 Para servir a aplicação e o banco de dados
-```bash
+
+```shell
 docker-compose up
 ```
 
