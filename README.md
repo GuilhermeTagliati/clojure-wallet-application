@@ -1,11 +1,12 @@
 # API Clojure - Carteira de Investimentos
 
-## Deselvolvedores
+## Desenvolvedores
 Nome: Guilherme Tagliati da Silva       RA: 17.00375-0
 Nome: Breno Thomaz Savanini             RA: 17.00815-8
 Nome: Lucas Martins Coelho 	            RA: 15.03863-7
 Nome: Enricco Diniz 		            RA: 17.00165-0
 Nome: Lucas Menezes                     RA: 16.00683-6
+
 ## Resumo
 O projeto consiste em criar uma API para inserir, selecionar, atualizar e deletar informações de uma determinada carteira de investimentos. As carteiras de investimentos serão criadas com base no sistema de ARCA (Ativos Nacionais, *Real State*,  Caixa e Ativos Internacionais)
 
@@ -38,12 +39,24 @@ Serão consideradas essas as entidades principais.
 
 **Diagrama Entidade Relacionamento**
 
+```mermaid
+erDiagram
 
+	USER 	||--o{ WALLET : has
+	WALLET 	||--o{ OPERATION : contains
+
+```
 
 ## Rodando o Projeto
 
-O projeto está utilizando docker-compose para sua inicialização. Então assim que clonar o projeto, não esqueça de ter docker instalado na maquina e então rode o comando abaixo:
+O projeto está utilizando docker-compose para sua inicialização. Então assim que clonar o projeto, não esqueça de ter docker instalado na maquina e então rode os comandos abaixo:
 
+Para construir e criar o uberjar do projeto em clojure:
+```bash
+docker-compose build
+```
+
+Para servir a aplicação e o banco de dados
 ```bash
 docker-compose up
 ```
