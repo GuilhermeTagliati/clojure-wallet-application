@@ -30,9 +30,7 @@
   (PUT "/user" [] (mj/wrap-json-body update-user-handler {:keywords? true}))
   (DELETE "/user" [] delete-user-handler))
 
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
+(defn -main [& args]
   (let [port 3000]
     (server/run-server  (wrap-defaults #'app-routes api-defaults)  {:port port})
     (println (str "Running service on port " port))))
